@@ -12,7 +12,7 @@
 		</div>
 		<div id="container">
 			<div id="blog">
-
+			
     		<?php if(have_posts()) : ?><?php while(have_posts()) : the_post(); ?>
 			<section class="whole_article" id="article-<?php the_ID(); ?>">
 				<article id="entry">
@@ -71,7 +71,7 @@
 			
 			</div>
 
-    		<?//php get_sidebar(); ?>
+    		<?php get_sidebar(); ?>
     	</div>
     	<?php get_footer(); ?>
 	</body>

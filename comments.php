@@ -60,7 +60,7 @@ $oddcomment = 'alt';
 
 <?php if ('open' == $post->comment_status) : ?>
 
-		<h3 id="respond">Leave a Reply</h3>
+		<h3 id="respond">评论</h3>
 
 <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
 <p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">logged in</a> to post a comment.</p>
