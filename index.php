@@ -7,8 +7,10 @@
 			#slideshow{position:relative;height:400px;width:960px;border:0px solid #ddd;}
 			#slideshow div{position:absolute;top:0;left:0;z-index:8;opacity:0.0;height:400px;overflow:hidden;background-color:#FFF;}
 			#slideshow div.current{z-index:10;}
+			#slideshow div.current span{z-index:11;}
 			#slideshow div.prev{z-index:9;}
 			#slideshow div img{display:block;border:0;margin-bottom:10px;height:400px;width:960px;}
+			#slideshow div span{display:none;position:absolute;top:10%;left:20%;height:50px;line-height:50px;font-size:50px;/*background:#000;*/color:#fff;/*width:100%;*/}
 			#slideshow div.current span{display:block;}
 		</style>
 		
@@ -17,18 +19,23 @@
 			<div id="slideshow" class="picShow" id="picShow">
 			    <div class="current">
 			        <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/slide/1.jpg" alt="" /></a>
+			        <span>快乐学车，安全驾驶</span>
 			    </div>
 			    <div>
 			        <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/slide/2.jpg" alt="" /></a>
+			        <span>快乐学车，安全驾驶</span>
 			    </div>
 			    <div>
 			        <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/slide/3.jpg" alt="" /></a>
+			        <span>快乐学车，安全驾驶</span>
 			    </div>
 			    <div>
 			        <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/slide/4.jpg" alt="" /></a>
+			        <span>快乐学车，安全驾驶</span>
 			    </div>
 			    <div>
 			        <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/img/slide/5.jpg" alt="" /></a>
+			        <span>快乐学车，安全驾驶</span>
 			    </div>
 			</div>
 
@@ -79,7 +86,7 @@
 	    </div>
     	<?php get_footer(); ?>
 
-<script type="text/javascript" src="http://libs.useso.com/js/jquery/1.3.0/jquery.min.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.3.0/jquery.min.js"></script>
 <script type="text/javascript">
 function slideSwitch() {
 	var $current = $("#slideshow div.current");
@@ -99,6 +106,8 @@ $(function() {
 	// 设定时间为3秒(1000=1秒)
     setInterval( "slideSwitch()", 3000 ); 
 });
+
+
 </script>
 
 

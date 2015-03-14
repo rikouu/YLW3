@@ -103,7 +103,7 @@ a:hover {
 
 	width: 102px;
 	text-align: center;
-	z-index: 1;
+	z-index: 12;
 	position: relative;
 	/*取消inline block之间的空白*/
 	font-size: 16px;
@@ -138,7 +138,7 @@ a:hover {
 
 	box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 	border: 1px solid #ddd;
-	z-index: 999;
+	z-index: 99999;
 }
 #topheader + nav > div li:hover li {
 	background-color: #d1d1d1;
