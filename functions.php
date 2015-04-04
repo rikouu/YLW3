@@ -22,7 +22,7 @@ if ( function_exists('register_sidebar') )
  
 //修改摘要字数
 function new_excerpt_length($length) {
-    return 75;
+    return 120;
 }
 add_filter('excerpt_length', 'new_excerpt_length');
       
@@ -289,5 +289,12 @@ function __popular_posts($no_posts=6, $before="<li>", $after="</li>", $show_pass
 		$output .= $before . "None found" . $after;
 	}
 	return  $output;
-} 		
+} 	
+
+//修改摘要样式
+function new_excerpt_more( $more ) {
+	return '';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
 ?>

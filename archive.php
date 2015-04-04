@@ -2,16 +2,44 @@
 
 		<style type="text/css">
 			#topheader + nav {
-				margin-bottom: 20px;
+				margin-bottom: 5px;
 			}
 		</style>
 
 		<div id="mbxdh">
 			<div>
 				<?php
-				$categorys = get_the_category();
-				$category = $categorys[0];
-				echo( get_category_parents($category->term_id,true,'') );
+				// $categorys = get_the_category();
+				// $category = $categorys[0];
+				// echo( get_category_parents($category->term_id,true,'') );
+				?>
+				<?php
+					if( is_single() ){
+					$categorys = get_the_category();
+					$category = $categorys[0];
+					echo( get_category_parents($category->term_id,true,' &raquo; ') );
+					the_title();
+					} 
+					else 
+					{
+						echo "<a href=\"#\">";
+						if ( is_page() ){
+						the_title();
+						} elseif ( is_category() ){
+						single_cat_title();
+						} elseif ( is_tag() ){
+						single_tag_title();
+						} elseif ( is_day() ){
+						the_time('Y年Fj日');
+						} elseif ( is_month() ){
+						the_time('Y年F');
+						} elseif ( is_year() ){
+						the_time('Y年');
+						} elseif ( is_search() ){
+						echo $s.' 的搜索结果';
+						}
+						echo "</a>";
+					}
 				?>
 			</div>
 		</div>
@@ -22,12 +50,7 @@
 
 
 			<section id="blog">
-				<div id="news">
-					<div class="mhq">
-						<h3>驾校动态</h3>
-						<sub></sub>
-					</div>
-				</div>
+
 	    		<?php if(have_posts()) : ?><?php while(have_posts()) : the_post(); ?>
 				<article class="post" id="post-<?php the_ID(); ?>">
 					

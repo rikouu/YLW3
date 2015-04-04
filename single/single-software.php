@@ -1,4 +1,27 @@
 		<?php get_header(); ?>
+		<style>
+            #article-content ul:nth-last-child(2){
+                border: 2px solid #c9dd22;
+                filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+				-moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
+				-webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
+				box-shadow:2px 2px 10px #909090;/*opera或ie9*/
+
+                list-style: none;
+                line-height: 1.5;
+                padding: 5px;
+                margin-top: 5px;
+                text-indent: 2em;
+                
+
+            }
+            #article-content ul:nth-last-child(2) li:first-child{
+            	color: #ff8936;
+            	font-weight: bold;
+            	text-align: center;
+            }
+            
+		</style>
 		<div id="mbxdh">
 				<div>
 					
@@ -11,8 +34,7 @@
 				</div>
 		</div>
 		<div id="container">
-			<div id="blog">
-			
+
     		<?php if(have_posts()) : ?><?php while(have_posts()) : the_post(); ?>
 			<section class="whole_article" id="article-<?php the_ID(); ?>">
 				<article id="entry">
@@ -27,7 +49,9 @@
 	                    <?php comments_popup_link('快抢沙发 &#187;', '沙发被抢 &#187;', '% 评论 &#187;'); ?> <?php edit_post_link('Edit', ' &#124; ', ''); ?>
 	                     <?php if(function_exists('the_views')) { the_views(); } ?>
 					</div>
-
+					<div id="article-excerpt">
+						<?php the_excerpt(); ?>
+					</div>
 	                <div id="article-content">
 						<?php the_content(); ?>
 					</div>
@@ -39,13 +63,14 @@
 	            <?php   $custom_fields = get_post_custom_keys($post_id);
     			if (!in_array ('copyright', $custom_fields)) : ?>
 				<div class="article-copyright">
-	    			<p><b> 声明: </b> 本文由 <a href="<?php bloginfo('home'); ?>"> <?php the_author(); ?> </a> 原创，未经允许禁止转载</p>
+	    			<p><b> 声明: </b> 本文由(<a href="<?php bloginfo('home'); ?>"> <?php the_author(); ?> </a>)原创，转载请保留本文链接: <a href="<?php the_permalink()?>" title=<?php the_title(); ?>><?php the_permalink()?></a></p>
 				</div>
    				<?php else: ?>
 				<?php  $custom = get_post_custom($post_id);
            		$custom_value = $custom['copyright']; ?>
 				<div class="article-copyright">
-	   				<p><b> 声明: </b> 本文来源于 <?php echo $custom_value[0] ?> ，整理：<a href="<?php bloginfo('home'); ?>"> <?php the_author(); ?> </a></p>
+	   				<p><b> 声明: </b> 本文来源于 <a rel="nofollow" target="_blank" href="/go.php?url=<?php echo $custom_value[0] ?>"><?php echo $custom_value[0] ?></a> ，由(<a href="<?php bloginfo('home'); ?>"> <?php the_author(); ?> </a>) 整编。</p>
+	  				<p><b> 本文链接: </b><a href="<?php the_permalink()?>" title=<?php the_title(); ?>><?php the_permalink()?></a> .</p>
     			</div>
     			<?php endif; ?>
 
@@ -69,9 +94,9 @@
 
 			</section>
 			
-			</div>
 
-    		<?php get_sidebar(); ?>
+
+    		<?//php get_sidebar(); ?>
     	</div>
     	<?php get_footer(); ?>
 	</body>

@@ -1,8 +1,8 @@
 /*  
-Theme Name: yale
+Theme Name: YLW3.0
 Theme URI: http://www.yalewoo.com
-Description: 9.2号更新雅乐网主题
-Version: 2.0
+Description: 2015.4.5更新雅乐网主题3.0版本
+Version: 3.0
 Author: Yalewoo
 Author URI: http://www.yalewoo.com/
 */
@@ -170,7 +170,6 @@ a:hover {
 	width: 654px;
 	float: left;
 	margin: 0px;
-	margin-top: 10px;
 	padding: 20px;
 	background: #fff;
 	border: 1px solid #e0d4af;
@@ -179,58 +178,50 @@ a:hover {
 
 }
 
-#blog .post-thumb {
+
+#blog .post-thumb img {
+	width: 200px;
+	height: 150px;
 	float: left;
-	width: 150px;
-	height: 100px;
-	margin-right: 20px;
-}
-#blog .post-thumb img {	
-
-	width: 150px;
-	height: 100px;
-	border: thin gray solid;
-}
-
-#post-right {
-	float: right;
-	width:454px;
+	border: thin #e0e0e0 solid;
+	padding: 5px;
+	margin: 5px;
 }
 
 /*=article*/
+
 .post h2 {
-	width: 200px;
-	text-align: left;
-	font-weight: bold;
-	font-size: 16px;
+	text-align: center;
+	font-weight: normal;
+	font-size: 1.3em;
+	margin: 10px 5px 5px 5px;
 	margin-bottom: 10px;
-	display: inline;
+
 }
 .post h2 a {
-	color: #333;
+	color: #000;
 }
 #container .post h2 a:hover {
 	color: #5895BE;
 	text-decoration: none;
 }
 .post .post-content {
-	
-	
+	margin-left: 240px;
+	height: 162px;
 }
 .post .post-content p {
-	font-size: 14px;
+	font-size: 16px;
 	text-indent: 2em;
 	line-height: 1.7;
-	color: #666;
+	color: #333;
 	padding-top: 10px;
 }
 
 .post {
-	overflow: hidden;
 	display: block;
 	position: relative;
+	padding-bottom: 10px;
 	border-bottom: 1px dashed #e0e0e0;
-	padding: 15px;
 }
 .post > a {
 	float: right;
@@ -239,9 +230,9 @@ a:hover {
 	right: 0px;
 }
 .post .post-meta {
-	float: right;
-	width: 150px;
-	text-align: right;
+
+	text-align: center;
+	margin: 5px;
 	font-size: 14px;
 	font-family: serif;
 	font-weight: bold;
@@ -258,6 +249,7 @@ a:hover {
 .article_nav {
 	text-align: center;
 }
+
 /*=sidebar*/
 #sidebar {
 	width: 264px;
@@ -266,6 +258,7 @@ a:hover {
 	font-size: 14px;
 	background: #fcfaf5;
 	line-height: 1.7;
+	margin-top: -10px;
 }
 #sidebar ul {
 	list-style: none;
@@ -309,6 +302,15 @@ a:hover {
 
 }
 /*=single*/
+#article-excerpt{
+	background: url(img/daodu.png) no-repeat;
+	padding: 14px 14px 20px 104px;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	margin-bottom: 25px;
+	height: 65px;
+	opacity: 0.8;
+}
 #article-content blockquote {
 	background: #f9f9f9 url(img/icon_quote_right.png) no-repeat right bottom;
 	padding: 5px;	
@@ -357,6 +359,7 @@ a:hover {
 .whole_article {
 	padding: 10px 30px 15px 30px;
 	background: #fff;
+	border: 1px solid #e0d4af;
 }
 #entry {
 	margin-bottom: 30px;
@@ -372,8 +375,9 @@ a:hover {
 #entry h2 {
 	background: url(img/tit-bg.png) no-repeat;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	padding-left: 32px;
-	font-size: 23px;
+	font-size: 30px;
 	font-weight: 500;
 	color: #3a3a3a;
 }
@@ -383,8 +387,7 @@ a:hover {
 #entry .post-meta {
 	font-size: 12px;
 	padding: 10px 0 15px 32px;	
-	border-bottom: 1px solid #eee;
-	margin-bottom: 30px;
+	margin-bottom: 5px;
 }
 
 #entry .post-meta a {
@@ -399,26 +402,23 @@ a:hover {
 	line-height: 1.5;
 	color: #111;
 }
-#entry h3 {
-	text-indent: 0;
-	font-family: serif;
+#entry h4 {
 	font-size: 20px;
 	font-weight: 900;
 	word-spacing: 2px;
 	margin: 30px 0 30px 0px;
 	padding-bottom: 5px;
-	border-bottom: 2px solid #eee;
-	color: #111;
+	border-bottom: 1px #ddd solid;
 
 }
-#entry h4 {
-	text-indent: 0;
-	color: #ff7500;
-	margin: 10px 0 10px 0;
-
-	padding-left: 10px;
-	border-left: 5px solid red;
-	border-bottom: 1px solid #faff72;
+#entry h3 {
+	font-size: 2em;
+	font-weight: 900;
+	word-spacing: 2px;
+	margin: 30px 0 30px 0px;
+	padding-bottom: 5px;
+	border-bottom: 1px #ddd solid;
+	font-family: serif;
 }
 
 #otherdata div.article-copyright {
