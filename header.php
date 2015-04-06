@@ -3,28 +3,7 @@
 
 	<head>
 		<title>
-		   <?php
-		   if(get_option('mytheme_word_t12')==""){$word_t12='找到标签';}else{ $word_t12=get_option('mytheme_word_t12');};
-		   if(get_option('mytheme_word_t9')!=""){$word_t9=get_option('mytheme_word_t9');}else{$word_t9='搜索结果：';}  
-		     if(get_option('mytheme_word_t10')!=""){$word_t10=get_option('mytheme_word_t10');}else{$word_t9='很遗憾，没有找到你要的信息：';}  
-		      if (function_exists('is_tag') && is_tag()) {
-		         single_tag_title($word_t12."&quot;"); echo '&quot; - '; }
-		      elseif (is_archive()) {
-		         wp_title(''); echo '  - '; }
-		      elseif (is_search()) {
-		         echo $word_t9.' &quot;'.wp_specialchars($s).'&quot; - '; }
-		      elseif (!(is_404()) && (is_single()) || (is_page())) {
-		         wp_title(''); echo ' - '; }
-		      elseif (is_404()) {
-		         echo $word_t10.'- '; }
-		      if (is_home()) {
-		         bloginfo('name'); echo ' - '; bloginfo('description'); }
-		      else {
-		          bloginfo('name'); }
-		      if ($paged>1) {
-		         echo ' - page '. $paged;echo ' - '; bloginfo('description'); }
-		   ?>
-          
+		   <?php wp_title(' | ', true, 'right'); ?>
 	</title>
 		<meta charset="<?php bloginfo('charset'); ?>" />
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >

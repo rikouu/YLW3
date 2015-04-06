@@ -16,7 +16,7 @@ body {
 }
 a {
 	text-decoration: none;
-	color: #333333;
+	color: #2d64b3;
 }
 a:hover {
 	text-decoration: underline;
@@ -44,7 +44,7 @@ a:hover {
 	padding-bottom: 10px;
 	background: url(img/logo.gif) 0px 10px no-repeat;
 	/*width: 260px;*/
-	height: 130px;
+	height: 105px;
 }
 
 #searchform div {
@@ -366,7 +366,7 @@ a:hover {
 }
 #entry img {
 
-	max-width: 100%;
+	max-width: 90%;
 	/*height: auto;
 	margin: 10px auto;
 	padding: 10px;

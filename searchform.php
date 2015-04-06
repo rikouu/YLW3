@@ -10,7 +10,7 @@
 
 
 
-	<input type="submit" id="searchsubmit"" />
+	<input type="submit" id="searchsubmit" value="Search" />
 
 
 
