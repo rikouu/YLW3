@@ -40,13 +40,13 @@
 	            <?php   $custom_fields = get_post_custom_keys($post_id);
     			if (!in_array ('copyright', $custom_fields)) : ?>
 				<div class="article-copyright">
-	    			<p><b> 声明: </b> 本文由(<a href="<?php bloginfo('home'); ?>"> <?php the_author(); ?> </a>)原创，转载请保留本文链接: <a href="<?php the_permalink()?>" title=<?php the_title(); ?>><?php the_permalink()?></a></p>
+	    			<p><b> 声明: </b> 本文由(<?php the_author_posts_link(); ?>)原创，转载请保留本文链接: <a href="<?php the_permalink()?>" title=<?php the_title(); ?>><?php the_permalink()?></a></p>
 				</div>
    				<?php else: ?>
 				<?php  $custom = get_post_custom($post_id);
            		$custom_value = $custom['copyright']; ?>
 				<div class="article-copyright">
-	   				<p><b> 声明: </b> 本文来源于 <a rel="nofollow" target="_blank" href="/go.php?url=<?php echo $custom_value[0] ?>"><?php echo $custom_value[0] ?></a> ，由(<a href="<?php bloginfo('home'); ?>"> <?php the_author(); ?> </a>) 整编。</p>
+	   				<p><b> 声明: </b> 本文来源于 <a rel="nofollow" target="_blank" href="/go.php?url=<?php echo $custom_value[0] ?>"><?php echo $custom_value[0] ?></a> ，由(<?php the_author_posts_link(); ?>) 整编。</p>
 	  				<p><b> 本文链接: </b><a href="<?php the_permalink()?>" title=<?php the_title(); ?>><?php the_permalink()?></a> .</p>
     			</div>
     			<?php endif; ?>
