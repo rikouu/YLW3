@@ -27,7 +27,7 @@
 	                    <?php //the_time('Y年n月j日')?>
 	                    <span style="font-weight:normal;">last update:</span><?php the_modified_time('Y-m-d'); ?>
 
-	                    <?php _e('分类&#58;'); ?> <?php the_category(', ') ?> <?php _e('by'); ?> <?php  the_author(); ?>
+	                    <?php _e('分类&#58;'); ?> <?php the_category(', ') ?> <?php _e('by'); ?> <?php the_author_posts_link(); ?> 
 	                    <?php comments_popup_link('快抢沙发 &#187;', '沙发被抢 &#187;', '% 评论 &#187;'); ?> <?php edit_post_link('Edit', ' &#124; ', ''); ?>
 	                     <?php if(function_exists('the_views')) { the_views(); } ?>
 					</div>

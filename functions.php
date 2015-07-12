@@ -297,4 +297,18 @@ function new_excerpt_more( $more ) {
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
+
+
+
+//添加自定义用户信息字段
+add_filter('user_contactmethods','my_user_contactmethods');
+function my_user_contactmethods($user_contactmethods ){
+ $user_contactmethods ['weibo'] = '新浪微博';
+ $user_contactmethods ['touxiang'] = '头像url';
+ $user_contactmethods ['job'] = '职业';
+ $user_contactmethods ['addres'] = '所在地';
+
+ return $user_contactmethods ;
+}
+
 ?>

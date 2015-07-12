@@ -22,7 +22,7 @@
 	                <div class="post-meta">
 	                    最近更新：<?php the_modified_time('Y年n月j日')?>
 
-	                    <?php _e('分类&#58;'); ?> <?php the_category(', ') ?> <?php _e('by'); ?> <?php  the_author(); ?>
+	                    <?php _e('分类&#58;'); ?> <?php the_category(', ') ?> <?php _e('by'); ?> <?php the_author_posts_link(); ?>
 	                    <?php comments_popup_link('快抢沙发 &#187;', '沙发被抢 &#187;', '% 评论 &#187;'); ?> <?php edit_post_link('Edit', ' &#124; ', ''); ?>
 	                     <?php if(function_exists('the_views')) { the_views(); } ?>
 					</div>
