@@ -8,11 +8,20 @@
  5. 通过recommend自定义字段指定文章显示推荐标签
  6. 需安装WP-PostViews插件。浏览量超过1000显示 火 标签
  7. 文章页支持点赞 打赏 和 分享
-
+###截屏
+![首页][1]
+![文章页1][2]
+![文章页2][3]
 ###演示
-具体效果可以访问 [雅乐网][1]
+具体效果可以访问 [雅乐网][4]
+###版权
+如果你要使用本主题，请注明 Theme by [Yalewoo][5]
  
  
 
 
-  [1]: http://www.yalewoo.com
+  [1]: https://github.com/yalewoo/YLW3/blob/master/img/screen/screen1.png
+  [2]: https://github.com/yalewoo/YLW3/blob/master/img/screen/scrn20170314170305.png
+  [3]: https://github.com/yalewoo/YLW3/blob/master/img/screen/scrn20170314170357.png
+  [4]: http://www.yalewoo.com
+  [5]: http://www.yalewoo.com/ylw3.html
