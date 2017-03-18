@@ -335,4 +335,94 @@ function specs_zan(){
     die;
 }
 
+
+
+
+/**
+ * Random_Posts widget class
+ *
+ * Author: haoxian_zeng <http://cnzhx.net/>
+ * Date: 2013.05.14, cnzhx2011 1.0
+ */
+//--------------- * 注册该微件
+class WP_Widget_myRandom_Posts extends WP_Widget {
+
+    function __construct() {
+        $widget_ops = array('classname' => 'widget_my_random_posts', 'description' => __( '随机文章小工具' ) );
+        parent::__construct('random-posts', __('随机文章'), $widget_ops);
+        $this->alt_option_name = 'widget_my_random_posts';
+    }
+
+    function widget( $args, $instance ) {
+        global $randomposts, $post;
+
+        extract($args, EXTR_SKIP);
+        $output = '';
+        // 设置 widget 标题
+        $title = apply_filters('widget_title', empty($instance['title']) ? __('随机文章') : $instance['title']);
+
+        // 设置要获取的文章数目
+        if ( ! $number = absint( $instance['number'] ) )
+            $number = 5;
+
+        // WP 数据库查询，使用 rand 参数来获取随机的排序，并取用前面的 $number 个文章
+        $randomposts = get_posts( array( 'number' => $number, 'orderby' => 'rand', 'post_status' => 'publish' ) );
+
+        // 下面开始准备输出数据
+        // 先输出一般的 widget 前缀
+        $output .= $before_widget;
+        // 输出标题
+        if ( $title )
+        $output .= $before_title . $title . $after_title;
+
+        // random posts 列表开始
+        $output .= '<ul id="randomposts">';
+        if ( $randomposts ) {
+            foreach ( (array) $randomposts as $post) {
+                $output .= '<li><a href="' . get_permalink() . '">' . $post->post_title . '</a></li>';
+            }
+        }
+        $output .= '</ul>';
+        // 输出一般的 widget 后缀
+        $output .= $after_widget;
+
+        // 输出到页面
+        echo $output;
+    }
+
+    function update( $new_instance, $old_instance ) {
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['number'] = absint( $new_instance['number'] );
+
+        $alloptions = wp_cache_get( 'alloptions', 'options' );
+        if ( isset($alloptions['widget_my_random_posts']) )
+            delete_option('widget_my_random_posts');
+
+        return $instance;
+    }
+
+    //
+    // 在 WP 后台的 widget 内部显示两个参数, 1. 标题；2. 显示文章数目
+    //
+    function form( $instance ) {
+        $title = isset($instance['title']) ? esc_attr($instance['title']) : '';
+        $number = isset($instance['number']) ? absint($instance['number']) : 5;
+        ?>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+        <input class="cnzhx" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+
+        <p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to show:'); ?></label>
+        <input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" /></p>
+        <?php
+    }
+}
+
+	// register WP_Widget_myRandom_Posts widget
+	add_action( 'widgets_init', create_function( '', 'return register_widget("WP_Widget_myRandom_Posts");' ) );
+
+
+//wordpress禁用图片属性srcset和sizes   
+add_filter( 'max_srcset_image_width', create_function('', 'return 1;' ) );  
+
 ?>
