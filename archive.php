@@ -6,6 +6,9 @@
 			}
 		</style>
 
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/tiaozhuanyema.js"></script>
+
 		<div id="mbxdh">
 			<div>
 				<?php
@@ -109,9 +112,9 @@
 					
 				</article>
 				<?php endwhile; ?>
-				<div class="article_nav">
-	            	<?php posts_nav_link(); ?>
-	        	</div>
+				<div class="page_navi">
+					<?php par_pagenavi(6); ?>
+				</div>
 	    
 	   			<?php else : ?>
 	        		<div class="post">
