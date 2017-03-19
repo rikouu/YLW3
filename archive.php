@@ -7,7 +7,7 @@
 		</style>
 
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-		<script type="text/javascript" src="js/tiaozhuanyema.js"></script>
+		<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/tiaozhuanyema.js"></script>
 
 		<div id="mbxdh">
 			<div>

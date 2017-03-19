@@ -14,9 +14,10 @@ jQuery(document).ready( function($){
       alert('请输入1至' + page_max + '之间的数字');
       return false;
     }
-    
-    go_link = 'http://www.yalewoo.com/page/'+page_input.val(); //将页码数字替换
-    location.href = go_link; //跳转
+
+    page_links = $('.page_navi a').eq(2).attr('href');//从页码列表中获取任意一个链接,此处获取第二个链接
+    go_link = page_links.replace(/\/page\/([0-9]+)/g, '/page/'+page_input.val()); //将页码数字替换
+    location.href = go_link; //跳转   
   });
   $.fn.onlyNum = function onlyNum() {
      $(this).keypress(function (event) {
