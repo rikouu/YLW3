@@ -736,6 +736,107 @@ a:hover {
 
 
 
+/*评论*/
+#comments .comments-title
+{
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+#comments .comment-list > li{
+	width: 100%;
+    overflow: hidden;
+    clear: both;
+    border-top: 2px solid rgba(0,0,0,0.13);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#comments .comment-body{
+    
+}
+#comments .comment-author-avatar{
+	box-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    position: relative;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #fff;
+    float: left;
+    width: 64px;
+    height: 64px;
+
+    background: url("img/author.png");
+}
+#comments .comment-author-avatar img{
+	width: 100%;
+	height: 100%;
+
+	box-shadow: 0 1px 3px rgba(0,0,0,0.22);
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+#comments .children .comment-author-avatar{
+
+    width: 40px;
+    height: 40px;
+
+    background: url("img/author4040.png");
+}
+#comments .children {
+	margin-left: 38px;
+}
+#comments .comment-author-name{
+	padding-bottom: 5px;
+}
+#comments .comment-author-name a{
+	color: #d32;
+	font-size: 16px;
+	text-decoration: none;
+}
+#comments .comment-author-is-bloger{
+	font-size: 14px;
+	background-color: #FB7923;
+    font-size: 0.875em;
+    padding: 2px 5px;
+    margin-right: 5px;
+    color: #fff;
+    border-radius: 2px;
+}
+#comments .comment-body{
+	padding-left: 74px;
+
+
+}
+#comments .children .comment-body{
+	padding-left: 46px;
+	border-top: 1px solid rgba(0,0,0,0.08);
+}
+#comments .comment-body p{
+	font-size: 14px;
+	line-height: 1.7;
+}
+#comments .comment-meta a{
+	color: #555;
+	font-size: 12px;
+	text-decoration: none;
+	transition: color .15s linear;
+	margin-right: 10px;
+}
+#comments .comment-meta a:hover{
+	color: #111;
+}
+#comments .comment-one{
+	overflow: hidden;
+	padding: 10px;
+    
+}
+#comments .comment-body:hover{
+	background-color: #eeeeee;
+}
+#comments .children li{
+
+}
+
+
 /*表格样式*/
 table {
     *border-collapse: collapse; /* IE7 and lower */

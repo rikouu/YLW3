@@ -459,6 +459,130 @@ echo '<span>'.第 . $paged .页 .（共 . $max_page .页）. ' </span> ';
 }  
 
 
+/*
+ * 评论列表的显示
+ */
+function twentyfifteen_comment_nav() {
+	// Are there comments to navigate through?
+	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+	?>
+	<nav class="navigation comment-navigation" role="navigation">
+		<h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'twentyfifteen' ); ?></h2>
+		<div class="nav-links">
+			<?php
+				if ( $prev_link = get_previous_comments_link( __( 'Older Comments', 'twentyfifteen' ) ) ) :
+					printf( '<div class="nav-previous">%s</div>', $prev_link );
+				endif;
+
+				if ( $next_link = get_next_comments_link( __( 'Newer Comments', 'twentyfifteen' ) ) ) :
+					printf( '<div class="nav-next">%s</div>', $next_link );
+				endif;
+			?>
+		</div><!-- .nav-links -->
+	</nav><!-- .comment-navigation -->
+	<?php
+	endif;
+}
+function mytheme_get_avatar( $avatar ) {
+$avatar = preg_replace( "/http:\/\/(www|\d).gravatar.com/","http://on63vd0xn.bkt.clouddn.com/",$avatar );
+return $avatar;
+}
+add_filter( 'get_avatar', 'mytheme_get_avatar' );
+
+//评论者的链接新窗口打开
+function comment_author_link_window() {
+global $comment;
+$url    = get_comment_author_url();
+$author = get_comment_author();
+if (empty( $url ) || 'http://' == $url )
+ $return = $author;
+ else
+ $return = "<a href='$url'  target='_blank'>$author</a>"; 
+ return $return;
+}
+add_filter('get_comment_author_link', 'comment_author_link_window');
+
+if ( ! function_exists( 'bootstrapwp_comment' ) ) :
+function bootstrapwp_comment( $comment, $args, $depth ) {
+	$GLOBALS['comment'] = $comment;
+	switch ( $comment->comment_type ) :
+		case 'pingback' :
+			break;
+		case 'trackback' :
+	  // 用不同于其它评论的方式显示 trackbacks 。
+	?>
+	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+		<p><?php _e( 'Pingback:', 'bootstrapwp' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'bootstrapwp' ), '<span class="edit-link">', '</span>' ); ?>
+		</p>
+	<?php
+		break;
+		default :
+		// 开始正常的评论
+		global $post;
+	 ?>
+	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+		<div id="comment-<?php comment_ID(); ?>" class="comment-one">
+			<div class="comment-author-avatar">
+  			<?php // 显示评论作者头像 
+  			  echo get_avatar( $comment, 64 ); 
+  			?>
+			</div>
+			<?php // 未审核的评论显示一行提示文字
+			  if ( '0' == $comment->comment_approved ) : ?>
+  			<p class="comment-awaiting-moderation">
+  			  Your comment is awaiting moderation.
+  			</p>
+			<?php endif; ?>
+			<div class="comment-body">
+				<div class="comment-author-name">
+  				<?php // 显示评论作者名称
+  				    printf( '%1$s %2$s',
+  						get_comment_author_link(),
+  						// 如果当前文章的作者也是这个评论的作者，那么会出现一个标签提示。
+  						( $comment->user_id === $post->post_author ) ? '<span class="comment-author-is-bloger"> ' .'作者' . '</span>' : ''
+  					);
+  				?>
+  				</div>
+  				
+  				<?php // 显示评论内容
+				  comment_text(); 
+				?>
+				
+				<div class="comment-meta">
+
+    				<?php // 显示评论的发布时间
+    				    printf( '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
+    						esc_url( get_comment_link( $comment->comment_ID ) ),
+    						get_comment_time( 'c' ),
+    					  // 翻译: 1: 日期, 2: 时间
+    						sprintf( __( '%1$s %2$s', 'fenikso' ), get_comment_date(), get_comment_time() )
+    					);
+    				?>
+
+
+				
+				<?php // 显示评论的编辑链接 
+				  edit_comment_link( __( 'Edit', 'bootstrapwp' ), '<span class="edit-link">', '</span>' ); 
+				?>
+				
+				<span class="reply">
+					<?php // 显示评论的回复链接 
+					  comment_reply_link( array_merge( $args, array( 
+					    'reply_text' =>  '回复', 
+					    'depth'      =>  $depth, 
+					    'max_depth'  =>  $args['max_depth'] ) ) ); 
+					?>
+				</span>
+				</div>
+			</div>
+		</div>
+	<?php
+		break;
+	endswitch; // end comment_type check
+}
+endif;
+
+
 
 
 ?>

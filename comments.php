@@ -1,102 +1,70 @@
-<?php // Do not delete these lines
-if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) die ('Please do not load this page directly. Thanks!');
-if (!empty($post->post_password)) { // if there's a password
-	if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
-?>
+<?php
+/**
+ * The template for displaying comments
+ *
+ * The area of the page that contains both current comments
+ * and the comment form.
+ *
+ * @package WordPress
+ * @subpackage Twenty_Fifteen
+ * @since Twenty Fifteen 1.0
+ */
 
-<h2><?php _e('Password Protected'); ?></h2>
-<p><?php _e('Enter the password to view comments.'); ?></p>
-
-<?php return;
-	}
+/*
+ * If the current post is protected by a password and
+ * the visitor has not yet entered the password we will
+ * return early without loading the comments.
+ */
+if ( post_password_required() ) {
+	return;
 }
-
-	/* This variable is for alternating comment background */
-
-$oddcomment = 'alt';
-
 ?>
 
-<!-- You can start editing here. -->
+<div id="comments" class="comments-area">
 
-<?php if ($comments) : ?>
-	<h3 id="comments"><?php comments_number('No Responses', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</h3>
+	<?php if ( have_comments() ) : ?>
+		<div class="comments-title">
+		文章《<?php	echo get_the_title();?>》共有<?php echo get_comments_number(); ?>条评论：
+		</div>
 
-<ol class="commentlist">
-<?php foreach ($comments as $comment) : ?>
+		<?php twentyfifteen_comment_nav(); ?>
 
-	<li class="<?php echo $oddcomment; ?>" id="comment-<?php comment_ID() ?>">
+		<ol class="comment-list">
+			<?php wp_list_comments( array(
+				'callback'     =>  'bootstrapwp_comment',
+			) );  ?>
+		</ol><!-- .comment-list -->
 
-<div class="commentmetadata">
-<strong><?php comment_author_link() ?></strong>, <?php _e('on'); ?> <a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> <?php _e('at');?> <?php comment_time() ?></a> <?php _e('Said&#58;'); ?> <?php edit_comment_link('Edit Comment','',''); ?>
- 		<?php if ($comment->comment_approved == '0') : ?>
-		<em><?php _e('Your comment is awaiting moderation.'); ?></em>
- 		<?php endif; ?>
-</div>
+		<?php twentyfifteen_comment_nav(); ?>
 
-<?php comment_text() ?>
-	</li>
+	<?php endif; // have_comments() ?>
 
-<?php /* Changes every other comment to a different class */
-	if ('alt' == $oddcomment) $oddcomment = '';
-	else $oddcomment = 'alt';
-?>
-
-<?php endforeach; /* end for each comment */ ?>
-	</ol>
-
-<?php else : // this is displayed if there are no comments so far ?>
-
-<?php if ('open' == $post->comment_status) : ?>
-	<!-- If comments are open, but there are no comments. -->
-	<?php else : // comments are closed ?>
-
-	<!-- If comments are closed. -->
-<p class="nocomments">Comments are closed.</p>
-
+	<?php
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+	?>
+		<p class="no-comments"><?php _e( 'Comments are closed.', 'twentyfifteen' ); ?></p>
 	<?php endif; ?>
-<?php endif; ?>
 
+	<?php 
+	$commenter = wp_get_current_commenter();
+	$req = get_option( 'require_name_email' );
+	$aria_req = ( $req ? " aria-required='true'" : '' );
+	$fields =  array(
+		'author' => '<p class="comment-form-author">' . '<label for="author">' . __( 'Name' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
+			'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /></p>',
+		'email'  => '<p class="comment-form-email"><label for="email">' . __( 'Email' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .
+			'<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /></p>',
+	);
+	 
+	$comments_args = array(
+		'fields' =>  $fields,
+		'title_reply'=>'评论一下',
+		'label_submit' => '发射！'
+	);
+	 
+	comment_form($comments_args);
+	
+	?>
 
-<?php if ('open' == $post->comment_status) : ?>
-
-		<h3 id="respond">评论</h3>
-
-<?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">logged in</a> to post a comment.</p>
-
-<?php else : ?>
-
-<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
-<?php if ( $user_ID ) : ?>
-
-<p>Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="Log out of this account">Logout &raquo;</a></p>
-
-<?php else : ?>
-
-<p><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="40" tabindex="1" />
-<label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label></p>
-
-<p><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="40" tabindex="2" />
-<label for="email"><small>Mail (will not be published) <?php if ($req) echo "(required)"; ?></small></label></p>
-
-<p><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="40" tabindex="3" />
-<label for="url"><small>Website</small></label></p>
-
-<?php endif; ?>
-
-<!--<p><small><strong>XHTML:</strong> <?php _e('You can use these tags&#58;'); ?> <?php echo allowed_tags(); ?></small></p>-->
-
-<p><textarea name="comment" id="comment" cols="60" rows="10" tabindex="4"></textarea></p>
-
-<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
-<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
-</p>
-
-<?php do_action('comment_form', $post->ID); ?>
-
-</form>
-
-<?php endif; // If registration required and not logged in ?>
-
-<?php endif; // if you delete this the sky will fall on your head ?>
+</div><!-- .comments-area -->
