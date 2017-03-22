@@ -830,12 +830,30 @@ a:hover {
     
 }
 #comments .comment-body:hover{
-	background-color: #eeeeee;
+	background-color: #fcfaf5;
 }
 #comments .children li{
 
 }
 
+
+/*发表评论*/
+#respond textarea{
+	width: 90%;
+	height: 120px;
+	margin: 10px;
+	margin-left: 0px;
+	padding: 10px;
+	font-size: 14px;
+}
+#respond p{
+	margin: 10px;
+}
+#respond p input{
+	height: 40px;
+	font-size: 16px;
+	padding: 10px;
+}
 
 /*表格样式*/
 table {
