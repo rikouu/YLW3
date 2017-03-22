@@ -503,4 +503,47 @@ if (empty( $url ) || 'http://' == $url )
 add_filter('get_comment_author_link', 'comment_author_link_window');
 
 
+
+/*评论回复邮件通知*/
+function comment_mail_notify($comment_id) {
+  $admin_notify = '1'; // admin 要不要收回复通知 ( '1'=要 ; '0'=不要 )
+  $admin_email = get_bloginfo ('admin_email'); // $admin_email 可改为你指定的 e-mail.
+  $comment = get_comment($comment_id);
+  $comment_author_email = trim($comment->comment_author_email);
+  $parent_id = $comment->comment_parent ? $comment->comment_parent : '';
+  global $wpdb;
+  if ($wpdb->query("Describe {$wpdb->comments} comment_mail_notify") == '')
+    $wpdb->query("ALTER TABLE {$wpdb->comments} ADD COLUMN comment_mail_notify TINYINT NOT NULL DEFAULT 0;");
+  if (($comment_author_email != $admin_email && isset($_POST['comment_mail_notify'])) || ($comment_author_email == $admin_email && $admin_notify == '1'))
+    $wpdb->query("UPDATE {$wpdb->comments} SET comment_mail_notify='1' WHERE comment_ID='$comment_id'");
+  $notify = $parent_id ? get_comment($parent_id)->comment_mail_notify : '0';
+  $spam_confirmed = $comment->comment_approved;
+  if ($parent_id != '' && $spam_confirmed == '1' && $notify == '1') {
+    //$wp_email = 'no-reply@yalewoo.com';
+    $wp_email = 'yalewoo@163.com';
+    $to = trim(get_comment($parent_id)->comment_author_email);
+    $subject = '您在 [' . get_option("blogname") . '] 的评论有了新回复';
+    $message = '
+    <div>
+      <p>' . trim(get_comment($parent_id)->comment_author) . ', 您好!</p>
+      <p>您曾在《' . get_the_title($comment->comment_post_ID) . '》中评论：</p><p style="background-color:#eef2fa; border:1px solid #d8e3e8; color:#111; padding:15px; border-radius:5px;">'
+       . trim(get_comment($parent_id)->comment_content) . '</p>
+      <p>' . trim($comment->comment_author) . ' 给您回复了：</p><p style="background-color:#eef2fa; border:1px solid #d8e3e8; color:#111; padding:15px; border-radius:5px;">'
+       . trim($comment->comment_content) . '<br /></p>
+      <p>您还可以<a href="' . htmlspecialchars(get_comment_link($parent_id)) . '" title="单击查看完整的回复内容" target="_blank">&nbsp;查看完整的回复內容</a>，欢迎再度光临<a href="http://www.yalewoo.com">雅乐网</a></p>
+    </div>';
+         $from = "From: \"" . get_option('blogname') . "评论提醒\" <$wp_email>";
+         $headers = "$from\nContent-Type: text/html; charset=" . get_option('blog_charset') . "\n";
+         wp_mail( $to, $subject, $message, $headers );
+  }
+}
+add_action('comment_post', 'comment_mail_notify');
+ 
+/* 自动加勾选栏 */
+function add_checkbox() {
+  echo '<input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked" style="margin-left:20px;" /><label for="comment_mail_notify">有人回复时邮件通知我</label>';
+}
+add_action('comment_form', 'add_checkbox', 20, 2);
+
+
 ?>

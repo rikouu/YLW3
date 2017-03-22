@@ -105,9 +105,9 @@ if ( post_password_required() ) {
 <div id="comments" class="comments-area">
 
 	<?php if ( have_comments() ) : ?>
-		<div class="comments-title">
+		<h3 class="comments-title">
 		文章《<?php	echo get_the_title();?>》共有<?php echo get_comments_number(); ?>条评论：
-		</div>
+		</h3>
 
 		<?php twentyfifteen_comment_nav(); ?>
 
@@ -134,11 +134,11 @@ if ( post_password_required() ) {
 	$aria_req = ( $req ? " aria-required='true'" : '' );
 	$fields =  array(
         'author' => '<p class="comment-form-author">' . ( $req ? '<span class="required">*</span>' : '' ) .
-            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /> <label for="author">' . ' -> 你的姓名' . '</label> </p>',
+            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /> <label for="author">' . ' （选填） -> 你的大名（不填会显示匿名）' . '</label> </p>',
         'email'  => '<p class="comment-form-email">' . ( $req ? '<span class="required">*</span>' : '' ) .
-            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /><label for="email">' . ' -> 你的邮箱（用于展示头像和回复邮件提醒）' . '</label> </p>',
+            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /><label for="email">' . ' （选填） -> 你的邮箱（非公开，用于显示<a href="http://cn.gravatar.com/" target="_blank">Gravatar头像</a>和回复邮件提醒）' . '</label> </p>',
         'url'    => '<p class="comment-form-url">' .
-            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30"' . $aria_req . '  /><label for="url">' . ' -> 网站' . '</label></p>',
+            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30"' . $aria_req . '  /><label for="url">' . ' （选填） -> 你的网站（请勿填写广告链接）' . '</label></p>',
     );
 	 
 	$comments_args = array(
