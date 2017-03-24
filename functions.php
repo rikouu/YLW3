@@ -27,10 +27,21 @@ function new_excerpt_length($length) {
 add_filter('excerpt_length', 'new_excerpt_length');
       
       
-//支持外链缩略图
-function catch_first_image() {global $post, $posts;$first_img = '';
+//支持缩略图
+add_theme_support( "post-thumbnails" );
+function catch_first_image() {
+	global $post, $posts;
 	$first_img = '';
-	$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	
+	if ( has_post_thumbnail() ) {
+		$post2 = get_the_post_thumbnail( $post->ID );
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post2, $matches);	
+	}
+	else
+	{
+		$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+	}
+		
 	$first_img = $matches [1] [0];
 	if(empty($first_img)){
 		$first_img = bloginfo('template_directory').'/img/default.png';
@@ -38,7 +49,14 @@ function catch_first_image() {global $post, $posts;$first_img = '';
 	}
 	else
 	{
-  	return $first_img;
+		if (strpos($first_img, "7d9rd6.com1.z0.glb.clouddn.com"))
+		{
+			return $first_img.'-indexthumb';
+		}
+		else
+		{
+			return $first_img;
+		}
 	}
 };
 //增强默认编辑器
