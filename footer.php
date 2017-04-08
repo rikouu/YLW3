@@ -9,6 +9,8 @@
 
 		<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1252889774'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s5.cnzz.com/stat.php%3Fid%3D1252889774%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 
+    
+
 		<script>
 var _hmt = _hmt || [];
 (function() {
@@ -23,3 +25,8 @@ var _hmt = _hmt || [];
 
 		</div>
 </footer>
+
+<?php wp_footer(); ?>
+
+</body>
+</html>

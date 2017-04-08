@@ -133,12 +133,12 @@ if ( post_password_required() ) {
 	$req = get_option( 'require_name_email' );
 	$aria_req = ( $req ? " aria-required='true'" : '' );
 	$fields =  array(
-        'author' => '<p class="comment-form-author">' . ( $req ? '<span class="required">*</span>' : '' ) .
-            '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /> <label for="author">' . ' （选填） -> 你的大名（不填会显示匿名）' . '</label> </p>',
+        'author' => '<div class="comment-name-email-url"><p class="comment-form-author">' . ( $req ? '<span class="required">*</span>' : '' ) .
+            '<label for="author">姓名</label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' />  </p>',
         'email'  => '<p class="comment-form-email">' . ( $req ? '<span class="required">*</span>' : '' ) .
-            '<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /><label for="email">' . ' （选填） -> 你的邮箱（非公开，用于显示<a href="http://cn.gravatar.com/" target="_blank">Gravatar头像</a>和回复邮件提醒）' . '</label> </p>',
+            '<label for="email">邮箱</label><input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . ' /> </p>',
         'url'    => '<p class="comment-form-url">' .
-            '<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30"' . $aria_req . '  /><label for="url">' . ' （选填） -> 你的网站（请勿填写广告链接）' . '</label></p>',
+            '<label for="url">网址</label><input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30"' . $aria_req . '  /></p></div>'. spam_protection_math() .'<div class="comment-right"><div class="comment-submit-button">',
     );
 	 
 	$comments_args = array(
@@ -146,11 +146,15 @@ if ( post_password_required() ) {
 		'title_reply'=>'我要评论',
 		'label_submit' => '发表评论',
 		'comment_notes_before' => '',
-        'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" aria-required="true"></textarea></p>'
+  		'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p>'
 	);
 	 
 	comment_form($comments_args);
+	//comment_form();
 	
 	?>
 
 </div><!-- .comments-area -->
+
+<?php wp_enqueue_script( 'comment-reply' );?>
+<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/html5.js"></script>

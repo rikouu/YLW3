@@ -1,5 +1,3 @@
-
-
 jQuery(document).ready( function($){
   //.page_nav a.go_btn为确认按钮，点击执行
   $('.page_navi a.go_btn').on('click',function(event){
