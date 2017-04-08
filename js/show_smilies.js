@@ -69,7 +69,6 @@ function grin(tag) {
 
 
 function show_bdsharebox(){
-  alert("dsfadf");
 // document.getElementById("ylw_smilies_box").style.display="block";
     var s = '<div>分享到：</div><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_more" data-cmd="more"></a>';
     document.getElementById("bdsharebuttonbox").innerHTML = s;
