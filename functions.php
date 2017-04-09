@@ -700,9 +700,6 @@ function lazyload($content) {
 }
 if ( ! is_admin() )
 add_filter( 'get_avatar', 'lazyload', 11 );
-add_filter( 'post_thumbnail_html', 'lazyload', 11 );
-
-
 
 
 ?>
