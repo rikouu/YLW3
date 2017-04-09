@@ -775,6 +775,18 @@ ul, ol {
 #comments .comment-body{
     
 }
+.avatar{
+	-webkit-transition:0.5s;
+	-webkit-transition:-webkit-transform 0.5s ease-out;
+	transition:transform 0.5s ease-out;-moz-transition:-moz-transform 0.5s ease-out;
+}
+.avatar:hover
+{
+	transform:rotateZ(360deg);
+	-webkit-transform:rotateZ(360deg);
+	-moz-transform:rotateZ(360deg);
+}
+
 #comments .comment-author-avatar{
 	box-shadow: 0 1px 1px rgba(255,255,255,0.75);
     position: relative;
@@ -785,7 +797,6 @@ ul, ol {
     width: 64px;
     height: 64px;
 
-    background: url("img/author.png");
 }
 #comments .comment-author-avatar img{
 	width: 100%;
@@ -800,7 +811,6 @@ ul, ol {
     width: 40px;
     height: 40px;
 
-    background: url("img/author.png");
 }
 #comments .children {
 	margin-left: 38px;
@@ -1113,7 +1123,7 @@ table tr:last-child td:last-child {
 #content-index {
     position: fixed;
 
-    right:5px;
+    left:5px;
 
     bottom:0;
     max-width: 300px;
@@ -1171,6 +1181,36 @@ margin-top: 20px;}
 #page_input{
 	width: 30px;
 }
+
+/*=返回顶部*/
+#backtoTop {
+	background-color:#eee;
+	border-radius:100%;
+	bottom:10%;
+	height:48px;
+	position:fixed;
+	right:-100px;
+	width:48px;
+	transition:0.5s;
+	-webkit-transition:0.5s
+}
+#backtoTop.button--show{
+	right:10px
+}
+.per{
+	font-size:16px;
+	height:48px;
+	line-height:48px;
+	position:absolute;
+	text-align:center;
+	top:0;
+	width:48px;
+	color:#555;
+	cursor:pointer
+}
+.per:before{content:attr(data-percent)}
+.per:hover:before{content:"↑";font-size: 22px;line-height: 0;}
+
 
 
 /*针对小屏幕响应式布局*/

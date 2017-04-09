@@ -629,8 +629,12 @@ function twentyfifteen_comment_nav() {
 	<?php
 	endif;
 }
+
+//修改头像服务器
 function mytheme_get_avatar( $avatar ) {
-$avatar = preg_replace( "/http:\/\/(www|\d).gravatar.com/","http://on63vd0xn.bkt.clouddn.com/",$avatar );
+//$avatar = preg_replace( "/http:\/\/(www|\d).gravatar.com/","http://on63vd0xn.bkt.clouddn.com/",$avatar );
+$avatar = preg_replace( "/http:\/\/(www|\d).gravatar.com/","http://gravatar.duoshuo.com",$avatar );
+
 return $avatar;
 }
 add_filter( 'get_avatar', 'mytheme_get_avatar' );
