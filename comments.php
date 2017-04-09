@@ -157,4 +157,3 @@ if ( post_password_required() ) {
 </div><!-- .comments-area -->
 
 <?php wp_enqueue_script( 'comment-reply' );?>
-<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/js/html5.js"></script>
