@@ -18,7 +18,16 @@
 				if ( is_page() ){
 				the_title();
 				} elseif ( is_category() ){
-				single_cat_title();
+					global $wp_query;
+					$cat_obj = $wp_query->get_queried_object();
+					$thisCat = $cat_obj->term_id;
+					$thisCat = get_category($thisCat);
+					$parentCat = get_category($thisCat->parent);
+					if ($thisCat->parent != 0){
+						$cat_code = get_category_parents($parentCat, TRUE, ' &raquo; ');
+						echo $cat_code;
+					}
+					echo single_cat_title('', false);
 				} elseif ( is_tag() ){
 				single_tag_title();
 				} elseif ( is_day() ){

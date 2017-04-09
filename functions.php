@@ -105,7 +105,7 @@ smilies_reset();
 function spam_protection_math(){
 	$num1=rand(0,9);
 	$num2=rand(0,9);
-	return "<div class='comment_yzm'>验证码： $num1 + $num2 = <input type='text' name='sum' class='math_textfield'  required='required' value='' size='25' tabindex='4'>"
+	return "<div class='comment_yzm'>验证码*： $num1 + $num2 = <input type='text' name='sum' class='math_textfield'  required='required' value='' size='25' tabindex='4'>"
 	."<input type='hidden' name='num1' value='$num1'>"
 	."<input type='hidden' name='num2' value='$num2'></div>";
 }
