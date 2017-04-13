@@ -113,7 +113,7 @@ ul, ol {
 
 	width: 102px;
 	text-align: center;
-	z-index: 12;
+	/*z-index: 12;*/
 	position: relative;
 	/*取消inline block之间的空白*/
 	font-size: 16px;
@@ -139,6 +139,7 @@ ul, ol {
 }
 
 .main_nav > div li:hover ul {
+/*.main_nav > div li ul {*/
 	display: inline;
 	position: absolute;
 	top: 44px;
@@ -1267,10 +1268,11 @@ margin-top: 20px;}
 	}
 	#mbxdh {
 		width: 460px;
+		margin-top: 60px;
 	}
-	.main_nav > div li {
-    	z-index: 13;
+
 }
+
 @media screen and (max-width: 480px) {
 	#top_menu {
 		position: static;
@@ -1302,6 +1304,7 @@ margin-top: 20px;}
 	}
 	#mbxdh {
 		width: 294px;
+		margin-top: 90px;
 	}
 }
 
