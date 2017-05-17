@@ -11,7 +11,7 @@
 		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>" />
 
 
-		<?php wp_deregister_script( 'jquery' );wp_register_script( 'jquery', 'http://libs.baidu.com/jquery/2.0.0/jquery.min.js' , false, null, false );wp_enqueue_script( 'jquery' );?>
+		<?php wp_deregister_script( 'jquery' );wp_register_script( 'jquery', 'https://lib.sinaapp.com/js/jquery/1.8.2/jquery.min.js' , false, null, false );wp_enqueue_script( 'jquery' );?>
 		
 		<?php wp_head(); ?>
 
