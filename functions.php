@@ -706,4 +706,11 @@ if ( ! is_admin() )
 add_filter( 'get_avatar', 'lazyload', 11 );
 
 
+function autoblank($text) {
+	$return = str_replace('<a', '<a target="_blank"', $text);
+	return $return;
+}
+add_filter('the_content', 'autoblank');
+
+
 ?>
